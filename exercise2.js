@@ -93,35 +93,39 @@ let second = 'john';
 
 console.log(first, second)
 */
-//Spread Operator :
-const boys = ["john", "petter", "bob"];
-const girls = ["susan", "anna"];
+//Array.from :
+const udemy = "udemy";
+console.log(Array.from(udemy));
 
-const bestFriend = "arnold";
+//when you want select an element with specific text :
+const text = document.querySelectorAll(".text");
+console.log(text); //nodeList
 
-// const friends = [boys, girls, bestFriend];
-// console.log(friends);//here we have nested array [Array(3), Array(2), 'arnold'
+const newText = Array.from(text);
+console.log(newText); //Array
 
-const friends = [...boys, ...girls, bestFriend];
-console.log(friends); //['john', 'petter', 'bob', 'susan', 'anna', 'arnold']
+const newTextFind = Array.from(text).find(
+  (item) => item.textContent === "person"
+);
+console.log(newTextFind);
 
-//reference :(change the original array)
-// const newFriends = friends;
-// newFriends[0] = "nancy";
-// console.log(newFriends);
-// console.log(friends);
+// const items = Array.from({ length: 120 });
+// console.log(items); //return an Array with 120 undefined item
 
-//copy :(with spread operator we have a copy of frinds)
-const newFriends = [...friends];
-newFriends[0] = "nancy";
-console.log(newFriends);
-console.log(friends);
+const items = Array.from({ length: 120 }, (_, index) => {
+  return index;
+});
+console.log(items); //return an Array with 120 undefined item
 
-//object : (for when you don't want change original object)
-const person = { name: "john", job: "developer" };
-const newPerson = { ...person, city: "chicago" };
-const newPerson2 = person;
-// newPerson2.name = "kiya";
-console.log(newPerson);
-console.log(person);
-// console.log(newPerson2);
+//for show how many item in every page and here is 14
+const itemPerPage = 14;
+const pages = Math.ceil(items.length / itemPerPage);
+console.log(pages);
+
+const newItems = Array.from({ length: pages }, (_, index) => {
+  const start = index * itemPerPage;
+  const tempItems = items.slice(start, start + itemPerPage);
+  return tempItems;
+});
+
+console.log(newItems);
