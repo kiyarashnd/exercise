@@ -103,7 +103,7 @@ const bestFriend = "arnold";
 // console.log(friends);//here we have nested array [Array(3), Array(2), 'arnold'
 
 const friends = [...boys, ...girls, bestFriend];
-console.log(friends);
+console.log(friends); //['john', 'petter', 'bob', 'susan', 'anna', 'arnold']
 
 //reference :(change the original array)
 // const newFriends = friends;
