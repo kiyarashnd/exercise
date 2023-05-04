@@ -93,35 +93,35 @@ let second = 'john';
 
 console.log(first, second)
 */
+//Spread Operator :
+const boys = ["john", "petter", "bob"];
+const girls = ["susan", "anna"];
 
-//Rest Operator :
-//Array
-const fruits = ["apple", "orange", "lemon", "banana"];
-const [fisrt, ...restOfTheFruits] = fruits;
-console.log(fisrt); //apple
-console.log("rest", restOfTheFruits); //[ "orange", "lemon", "banana"]
-const specificFruit = restOfTheFruits.find((fruit) => fruit === "lemon");
-console.log(specificFruit); //lemon
-//objects
-const person = { name: "john", lastName: "smith", job: "developer" };
-// const {...rest,name}=person//this don't work
-const { name, ...rest } = person;
-console.log(name); //john
-console.log(rest); //{lastName: 'smith', job: 'developer'}
+const bestFriend = "arnold";
 
-//functions :
-const getAverage = (name, ...scores) => {
-  console.log("name in function : ", name);
-  console.log("score in function : ", scores);
-  const average =
-    scores.reduce((total, scr) => {
-      total += scr;
-      return total;
-    }, 0) / scores.length;
-  console.log(average);
-};
+// const friends = [boys, girls, bestFriend];
+// console.log(friends);//here we have nested array [Array(3), Array(2), 'arnold'
 
-// getAverage(person.name, 89, 87, 100);
-const testScores = [23, 25, 67, 89];
-// getAverage(person.name, testScores); //this don't work
-getAverage(person.name, ...testScores);
+const friends = [...boys, ...girls, bestFriend];
+console.log(friends);
+
+//reference :(change the original array)
+// const newFriends = friends;
+// newFriends[0] = "nancy";
+// console.log(newFriends);
+// console.log(friends);
+
+//copy :(with spread operator we have a copy of frinds)
+const newFriends = [...friends];
+newFriends[0] = "nancy";
+console.log(newFriends);
+console.log(friends);
+
+//object : (for when you don't want change original object)
+const person = { name: "john", job: "developer" };
+const newPerson = { ...person, city: "chicago" };
+const newPerson2 = person;
+// newPerson2.name = "kiya";
+console.log(newPerson);
+console.log(person);
+// console.log(newPerson2);
