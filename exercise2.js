@@ -125,38 +125,3 @@ const getAverage = (name, ...scores) => {
 const testScores = [23, 25, 67, 89];
 // getAverage(person.name, testScores); //this don't work
 getAverage(person.name, ...testScores);
-
-/*
-//Spread Operator :
-const boys = ["john", "petter", "bob"];
-const girls = ["susan", "anna"];
-
-const bestFriend = "arnold";
-
-// const friends = [boys, girls, bestFriend];
-// console.log(friends);//here we have nested array [Array(3), Array(2), 'arnold'
-
-const friends = [...boys, ...girls, bestFriend];
-console.log(friends);
-
-//reference :(change the original array)
-// const newFriends = friends;
-// newFriends[0] = "nancy";
-// console.log(newFriends);
-// console.log(friends);
-
-//copy :(with spread operator we have a copy of frinds)
-const newFriends = [...friends];
-newFriends[0] = "nancy";
-console.log(newFriends);
-console.log(friends);
-
-//object : (for when you don't want change original object)
-const person = { name: "john", job: "developer" };
-const newPerson = { ...person, city: "chicago" };
-const newPerson2 = person;
-// newPerson2.name = "kiya";
-console.log(newPerson);
-console.log(person);
-// console.log(newPerson2);
-*/
