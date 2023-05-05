@@ -93,39 +93,39 @@ let second = 'john';
 
 console.log(first, second)
 */
-//Array.from :
-const udemy = "udemy";
-console.log(Array.from(udemy));
-
-//when you want select an element with specific text :
-const text = document.querySelectorAll(".text");
-console.log(text); //nodeList
-
-const newText = Array.from(text);
-console.log(newText); //Array
-
-const newTextFind = Array.from(text).find(
-  (item) => item.textContent === "person"
-);
-console.log(newTextFind);
-
-// const items = Array.from({ length: 120 });
-// console.log(items); //return an Array with 120 undefined item
-
-const items = Array.from({ length: 120 }, (_, index) => {
-  return index;
+//Optional Chaining :
+const people = [
+  {
+    name: "bob",
+    location: { street: "123 main street", timezone: { offset: "+7:00" } },
+  },
+  {
+    name: "petere",
+    location: { street: "123 pine street" },
+  },
+  {
+    name: "susan",
+    location: { street: "123 Apple street", timezone: { offset: "+9:00" } },
+  },
+];
+//we want access name and offset for each user but we don't have off set of second user and this occur an Error
+//how to solve problem ---> optional chaining
+people.forEach((person) => {
+  console.log(person.name);
+  // console.log(person.location.timezone.offset); //Error
+  /*
+  //if person.location exist AND person.location.timezone exist then log person.lcation.timezone.offset
+  console.log(
+    person.location &&
+      person.location.timezone &&
+      person.location.timezone.offset
+  );
+  //here cause person.location.timezone is undefined this log undefined and don't check person.location.timezone.offset that cause an error*/
+  //a better syntax :
+  console.log(
+    person?.location?.timezone?.offset || "for be instead of undefined"
+  );
 });
-console.log(items); //return an Array with 120 undefined item
 
-//for show how many item in every page and here is 14
-const itemPerPage = 14;
-const pages = Math.ceil(items.length / itemPerPage);
-console.log(pages);
-
-const newItems = Array.from({ length: pages }, (_, index) => {
-  const start = index * itemPerPage;
-  const tempItems = items.slice(start, start + itemPerPage);
-  return tempItems;
-});
-
-console.log(newItems);
+// console.log(true && "hello world"); //hello world
+// console.log(false && "hello people"); //false
