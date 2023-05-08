@@ -93,25 +93,28 @@ let second = 'john';
 
 console.log(first, second)
 */
-//Callback Functions :
-function makeUpperCase(value) {
-  console.log(value.toUpperCase());
-}
+// Callback Hell :
 
-function reverseString(value) {
-  console.log(value.split("").reverse().join(""));
-}
+//we want :
+//after 1S first be red
+//after 3S second be blue //4S
+//after 2S third be green//6S
+//in sequence!
 
-function handleName(name, cb) {
-  const fullName = `${name} smith`;
-  cb(fullName);
-}
+const first = document.querySelector(".first");
+const second = document.querySelector(".second");
+const third = document.querySelector(".third");
 
-handleName("peter", makeUpperCase);
-handleName("peter", reverseString);
+const btn = document.querySelector(".btn");
 
-handleName("susan", function (value) {
-  console.log(value);
+btn.addEventListener("click", () => {
+  let clcFirt = setTimeout(() => {
+    first.style.color = "red";
+    setTimeout(() => {
+      second.style.color = "blue";
+      setTimeout(() => {
+        third.style.color = "green";
+      }, 2000); //after 2 second color of first gonna be red
+    }, 3000); //after 5 seond color of second gonna be blue
+  }, 1000); //after 6 second color of third gonna be green
 });
-
-handleName("susan", (value) => console.log(value));
