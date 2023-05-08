@@ -93,43 +93,25 @@ let second = 'john';
 
 console.log(first, second)
 */
-//Optional Chaining :
-const people = [
-  {
-    name: "bob",
-    location: { street: "123 main street", timezone: { offset: "+7:00" } },
-  },
-  {
-    name: "petere",
-    location: { street: "123 pine street" },
-  },
-  {
-    name: "susan",
-    location: { street: "123 Apple street", timezone: { offset: "+9:00" } },
-  },
-];
-//we want access name and offset for each user but we don't have offset of second user and this occur an Error
-//how to solve problem ---> optional chaining
-people.forEach((person) => {
-  console.log(person.name);
-  // console.log(person.location.timezone.offset); //Error in log second object offset
-  /*
-  //if person.location exist AND person.location.timezone exist then log person.lcation.timezone.offset :
-  console.log(
-    person &&
-      person.location &&
-      person.location.timezone &&
-      person.location.timezone.offset
-  );
-  */
-  //here cause person.location.timezone is undefined this log undefined and don't check person.location.timezone.offset that cause an Error*/
-  //a better syntax :
-  console.log(
-    person?.location?.timezone?.offset || "for be instead of undefined"
-  );
+//Callback Functions :
+function makeUpperCase(value) {
+  console.log(value.toUpperCase());
+}
+
+function reverseString(value) {
+  console.log(value.split("").reverse().join(""));
+}
+
+function handleName(name, cb) {
+  const fullName = `${name} smith`;
+  cb(fullName);
+}
+
+handleName("peter", makeUpperCase);
+handleName("peter", reverseString);
+
+handleName("susan", function (value) {
+  console.log(value);
 });
 
-// console.log(true && "hello world"); //hello world
-// console.log(false && "hello people"); //false
-console.log(undefined && "hello people"); //undefined
-// console.log(NaN && "hello people");//NaN
+handleName("susan", (value) => console.log(value));
