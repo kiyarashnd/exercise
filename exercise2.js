@@ -93,18 +93,56 @@ let second = 'john';
 
 console.log(first, second)
 */
-//Promises :(Pending,Rejected,FulFilled)
-const value = 2;
+//Promises Example :
+//.first - after 1s first red.
+//.second - after 3s second blue.
+//.third - after 2s third green.
+//in SEQUENCE!
+/*
+const btn = document.querySelector(".btn");
 
-const promise = new Promise((reslove, reject) => {
-  const random = Math.floor(Math.random() * 3) + 1;
-  if (random === value) {
-    reslove("you gusset correctly");
-  } else {
-    reject("wrong number");
-  }
+const promise = new Promise((resolve, reject) => {
+  resolve(console.log("success"));
+});
+btn.addEventListener("click", () => {
+  promise
+    .then(() =>
+      setTimeout(() => {
+        document.querySelector(".first").style.color = "red";
+      }, 1000)
+    )
+    .then(() =>
+      setTimeout(() => {
+        document.querySelector(".second").style.color = "blue";
+      }, 3000)
+    )
+    .then(() =>
+      setTimeout(() => {
+        document.querySelector(".third").style.color = "green";
+      }, 2000)
+    );
+});*/
+
+const btn = document.querySelector(".btn");
+btn.addEventListener("click", () => {
+  addColor(1000, ".first", "red")
+    .then(() => addColor(3000, ".second", "blue"))
+    .then(() => addColor(2000, ".third", "green"))
+    .catch((err) => console.log(err));
 });
 
-// console.log(promise);
+function addColor(time, selector, color) {
+  const element = document.querySelector(selector);
+  return new Promise((resolve, reject) => {
+    if (element) {
+      setTimeout(() => {
+        element.style.color = color;
+        resolve();
+      }, time);
+    } else {
+      reject(`there is no such element : "${selector}"`);
+    }
+  });
+}
 
-promise.then((value) => console.log(value)).catch(() => console.log(err));
+//Note : if we comment line 140 and don't have resolve() function just firt addColor() gonna run so remember wheter your are return a value or not you need to either resolve the promise or rejected
