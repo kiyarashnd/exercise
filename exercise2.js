@@ -93,28 +93,18 @@ let second = 'john';
 
 console.log(first, second)
 */
-// Callback Hell :
+//Promises :(Pending,Rejected,FulFilled)
+const value = 2;
 
-//we want :
-//after 1S first be red
-//after 3S second be blue //4S
-//after 2S third be green//6S
-//in sequence!
-
-const first = document.querySelector(".first");
-const second = document.querySelector(".second");
-const third = document.querySelector(".third");
-
-const btn = document.querySelector(".btn");
-
-btn.addEventListener("click", () => {
-  let clcFirt = setTimeout(() => {
-    first.style.color = "red";
-    setTimeout(() => {
-      second.style.color = "blue";
-      setTimeout(() => {
-        third.style.color = "green";
-      }, 2000); //after 2 second color of first gonna be red
-    }, 3000); //after 5 seond color of second gonna be blue
-  }, 1000); //after 6 second color of third gonna be green
+const promise = new Promise((reslove, reject) => {
+  const random = Math.floor(Math.random() * 3) + 1;
+  if (random === value) {
+    reslove("you gusset correctly");
+  } else {
+    reject("wrong number");
+  }
 });
+
+// console.log(promise);
+
+promise.then((value) => console.log(value)).catch(() => console.log(err));
