@@ -93,56 +93,74 @@ let second = 'john';
 
 console.log(first, second)
 */
-//Promises Example :
-//.first - after 1s first red.
-//.second - after 3s second blue.
-//.third - after 2s third green.
-//in SEQUENCE!
-/*
-const btn = document.querySelector(".btn");
+// Async / Await
+// const example = async () => {
+//   return "hello there";
+// };
 
-const promise = new Promise((resolve, reject) => {
-  resolve(console.log("success"));
-});
-btn.addEventListener("click", () => {
-  promise
-    .then(() =>
-      setTimeout(() => {
-        document.querySelector(".first").style.color = "red";
-      }, 1000)
-    )
-    .then(() =>
-      setTimeout(() => {
-        document.querySelector(".second").style.color = "blue";
-      }, 3000)
-    )
-    .then(() =>
-      setTimeout(() => {
-        document.querySelector(".third").style.color = "green";
-      }, 2000)
-    );
-});*/
+// console.log(example()); //Promise {<fulfilled>: 'hello there'}
 
-const btn = document.querySelector(".btn");
-btn.addEventListener("click", () => {
-  addColor(1000, ".first", "red")
-    .then(() => addColor(3000, ".second", "blue"))
-    .then(() => addColor(2000, ".third", "green"))
-    .catch((err) => console.log(err));
-});
+// async function someFunc() {
+//   const result = await example();
+//   console.log(result);
+//   console.log("hello world");
+// }
+// someFunc();
 
-function addColor(time, selector, color) {
-  const element = document.querySelector(selector);
+const users = [
+  { id: 1, name: "john" },
+  { id: 2, name: "susan" },
+  { id: 3, name: "anna" },
+];
+
+const articles = [
+  { userId: 1, articles: ["one", "two", "three"] },
+  { userId: 2, articles: ["four", "five"] },
+  { userId: 3, articles: ["six", "seven", "eight", "nine"] },
+];
+//get array artciles of user based on id of users :
+const getData = async () => {
+  try {
+    const user = await getUser("john");
+    const articles = await getArticles(user.id);
+    console.log(articles);
+  } catch (error) {
+    console.log(error);
+  }
+};
+getData();
+
+//another way :
+// getUser('susan')
+//   .then((user) => getArticles(user.id))
+//   .then((articles) => console.log(articles))
+//   .catch((err) => console.log(err))
+
+function getUser(name) {
   return new Promise((resolve, reject) => {
-    if (element) {
-      setTimeout(() => {
-        element.style.color = color;
-        resolve();
-      }, time);
+    const user = users.find((user) => user.name === name);
+
+    if (user) {
+      return resolve(user);
     } else {
-      reject(`there is no such element : "${selector}"`);
+      reject(`No such user with name : ${name}`);
     }
   });
 }
 
-//Note : if we comment line 140 and don't have resolve() function just firt addColor() gonna run so remember wheter your are return a value or not you need to either resolve the promise or rejected
+function getArticles(userId) {
+  return new Promise((resolve, reject) => {
+    const userArticles = articles.find((user) => user.userId === userId);
+
+    if (userArticles) {
+      return resolve(userArticles.articles);
+    } else {
+      reject(`Wrong ID`);
+    }
+  });
+}
+
+//async and await make promises easier to write :
+
+//async makes a function return a Promise
+//await makes a function wait for a Promise
