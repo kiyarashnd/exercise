@@ -93,26 +93,25 @@ let second = 'john';
 
 console.log(first, second)
 */
-//Fetch API :
-const url = "https://www.course-api.com/react-tours-project";
+//Fetch Errors :
+//this url is not correct :
+const url = "https://www.course-api.com/react-tours-projectss";
 
-console.log(fetch(url)); //Promise {<pending>}
-
-// fetch(url)
-//   .then((resp) => resp.json())
-//   .then((data) => console.log(data))
-//   .catch((err) => console.log(err));
-
-//with using async/await :
 const getTours = async () => {
   try {
     const resp = await fetch(url);
+    console.log(resp);
+    console.log(resp.ok); //false
+    if (!resp.ok) {
+      const msg = `There was an error "${resp.status} ${resp.statusText}"`;
+      throw new Error(msg);
+    }
     const data = await resp.json();
     console.log(data);
   } catch (error) {
     console.log(error);
   }
 };
-getTours();
-//async function always return promise
-//if we wanna access that data we must chain that with then
+
+const btn = document.querySelector(".btn");
+btn.addEventListener("click", getTours);
