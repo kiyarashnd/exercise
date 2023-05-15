@@ -141,7 +141,7 @@ function getUser(name) {
     const user = users.find((user) => user.name === name);
 
     if (user) {
-      return resolve(user);
+      resolve(user);
     } else {
       reject(`No such user with name : ${name}`);
     }
@@ -153,7 +153,7 @@ function getArticles(userId) {
     const userArticles = articles.find((user) => user.userId === userId);
 
     if (userArticles) {
-      return resolve(userArticles.articles);
+      resolve(userArticles.articles);
     } else {
       reject(`Wrong ID`);
     }
