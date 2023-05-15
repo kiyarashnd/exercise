@@ -93,74 +93,26 @@ let second = 'john';
 
 console.log(first, second)
 */
-// Async / Await
-// const example = async () => {
-//   return "hello there";
-// };
+//Fetch API :
+const url = "https://www.course-api.com/react-tours-project";
 
-// console.log(example()); //Promise {<fulfilled>: 'hello there'}
+console.log(fetch(url)); //Promise {<pending>}
 
-// async function someFunc() {
-//   const result = await example();
-//   console.log(result);
-//   console.log("hello world");
-// }
-// someFunc();
+// fetch(url)
+//   .then((resp) => resp.json())
+//   .then((data) => console.log(data))
+//   .catch((err) => console.log(err));
 
-const users = [
-  { id: 1, name: "john" },
-  { id: 2, name: "susan" },
-  { id: 3, name: "anna" },
-];
-
-const articles = [
-  { userId: 1, articles: ["one", "two", "three"] },
-  { userId: 2, articles: ["four", "five"] },
-  { userId: 3, articles: ["six", "seven", "eight", "nine"] },
-];
-//get array artciles of user based on id of users :
-const getData = async () => {
+//with using async/await :
+const getTours = async () => {
   try {
-    const user = await getUser("john");
-    const articles = await getArticles(user.id);
-    console.log(articles);
+    const resp = await fetch(url);
+    const data = await resp.json();
+    console.log(data);
   } catch (error) {
     console.log(error);
   }
 };
-getData();
-
-//another way :
-// getUser('susan')
-//   .then((user) => getArticles(user.id))
-//   .then((articles) => console.log(articles))
-//   .catch((err) => console.log(err))
-
-function getUser(name) {
-  return new Promise((resolve, reject) => {
-    const user = users.find((user) => user.name === name);
-
-    if (user) {
-      resolve(user);
-    } else {
-      reject(`No such user with name : ${name}`);
-    }
-  });
-}
-
-function getArticles(userId) {
-  return new Promise((resolve, reject) => {
-    const userArticles = articles.find((user) => user.userId === userId);
-
-    if (userArticles) {
-      resolve(userArticles.articles);
-    } else {
-      reject(`Wrong ID`);
-    }
-  });
-}
-
-//async and await make promises easier to write :
-
-//async makes a function return a Promise
-//await makes a function wait for a Promise
+getTours();
+//async function always return promise
+//if we wanna access that data we must chain that with then
