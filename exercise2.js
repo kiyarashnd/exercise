@@ -93,25 +93,18 @@ let second = 'john';
 
 console.log(first, second)
 */
-//Fetch Errors :
-//this url is not correct :
-const url = "https://www.course-api.com/react-tours-projectss";
-
-const getTours = async () => {
-  try {
-    const resp = await fetch(url);
-    console.log(resp);
-    console.log(resp.ok); //false
-    if (!resp.ok) {
-      const msg = `There was an error "${resp.status} ${resp.statusText}"`;
-      throw new Error(msg);
-    }
-    const data = await resp.json();
-    console.log(data);
-  } catch (error) {
-    console.log(error);
-  }
-};
+// Width/Height :
+//window.innerHeight and window.innerWidth for find width and height of window
+//we use etBoundingClientRect() for get width and height of any element
+console.log("height", window.innerHeight);
+console.log("width", window.innerWidth);
 
 const btn = document.querySelector(".btn");
-btn.addEventListener("click", getTours);
+const box = document.querySelector(".box");
+
+btn.addEventListener("click", () => {
+  const dimensions = box.getBoundingClientRect();
+  console.log(dimensions);
+});
+
+// console.log(document.getBoundingClientRect()); //Error
