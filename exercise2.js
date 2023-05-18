@@ -95,7 +95,7 @@ console.log(first, second)
 */
 // Width/Height :
 //window.innerHeight and window.innerWidth for find width and height of window
-//we use etBoundingClientRect() for get width and height of any element
+//we use getBoundingClientRect() for get width and height of any element
 console.log("height", window.innerHeight);
 console.log("width", window.innerWidth);
 
@@ -106,5 +106,4 @@ btn.addEventListener("click", () => {
   const dimensions = box.getBoundingClientRect();
   console.log(dimensions);
 });
-
 // console.log(document.getBoundingClientRect()); //Error
