@@ -1,4 +1,7 @@
 /*
+form move line in vsCode :
+Alt + Up // Move Up
+Alt + Down // Move Down
 // 2-Unique Values JavaScript (ES6) :(new Set)
 fetch('./products.json').then((res) => res.json()).then((response) => myFunctin(response))
 function myFunctin(data) {
@@ -93,17 +96,53 @@ let second = 'john';
 
 console.log(first, second)
 */
-// Width/Height :
-//window.innerHeight and window.innerWidth for find width and height of window
-//we use getBoundingClientRect() for get width and height of any element
-console.log("height", window.innerHeight);
-console.log("width", window.innerWidth);
+//Timestamps :
+// console.log(new Date()); //Fri May 19 2023 13:26:09 GMT+0330 (Iran Standard Time)
 
-const btn = document.querySelector(".btn");
-const box = document.querySelector(".box");
+// Unix Time = January 1, 1970 and 1s = 1000ms
 
-btn.addEventListener("click", () => {
-  const dimensions = box.getBoundingClientRect();
-  console.log(dimensions);
-});
-// console.log(document.getBoundingClientRect()); //Error
+console.log(Date.now()); //1684491017472
+console.log(new Date().getTime()); //1684491017472
+console.log(new Date().valueOf()); //1684491017472
+
+//this function run after 1000ms that more than 1000s as above values :
+setTimeout(() => {
+  console.log(Date.now()); //1684491049592
+}, 1000);
+
+// create id's in learning apps
+let people = [{ id: Date.now() + 2000, name: "kiya" }];
+people = [...people, { id: Date.now(), name: "peter" }]; //spread operator
+
+setTimeout(() => {
+  people = [...people, { id: Date.now(), name: "john" }];
+  console.log(people); //[0: {id: 1684491116269, name: 'peter'}, 1: {id: 1684491117272, name: 'john'}]
+}, 1000);
+
+// create/get dates
+console.log(new Date(1632961557647)); //when you send a time as mill second form Unix time this Date gonna return exact time--->Thu Sep 30 2021 03:55:57 GMT+0330 (Iran Standard Time)
+const now = Date.now();
+const futureDate = new Date(now + 1000 * 60);
+//here futureDate is 1 minute after new Date() :
+console.log(futureDate); //Fri May 19 2023 13:44:26 GMT+0330 (Iran Standard Time)
+console.log(new Date()); //Fri May 19 2023 13:43:26 GMT+0330 (Iran Standard Time)
+
+//find difference between dates :
+const firstDate = new Date();
+const secondDate = new Date(2023, 8, 28);
+
+const firstValue = firstDate.getTime();
+const secondValue = secondDate.getTime();
+
+console.log(firstValue); //1684491272487
+console.log(secondValue); //1632774600000
+
+const timeDifference = secondValue - firstValue;
+
+console.log(timeDifference); //11355289758
+
+const minutes = timeDifference / (1000 * 60);
+console.log(minutes); //189254.62856666668
+
+const hours = timeDifference / (1000 * 60 * 60);
+console.log(hours); //3154.2438094444447
