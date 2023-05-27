@@ -96,24 +96,40 @@ let second = 'john';
 
 console.log(first, second)
 */
-//ES2022 :
-//Top level await
+//Get Element Helper :
+const heading = document.querySelector(".heading");
+console.log(heading);
 
-import fetchTabs from "./fetchTabs.js";
-const tabs = await fetchTabs();
-console.log(tabs);
+const listItem = document.querySelectorAll(".list-item");
+console.log(listItem);
 
-const resp = await fetch("https://www.course-api.com/react-tabs-project");
-const data = await resp.json();
-console.log(data);
+//what happen if you type wrong class name in parenthesis
 
-//at() - takes integer and returns the item at that index - string or array
-const scores = [99, 90, 100];
-const oldLast = scores[scores.length - 1];
-console.log(oldLast);
+const getElement = (selector, isList) => {
+  //when we don't pass second paramter to functoin this paramter is undefined as a default
+  /*if (isList) {
+      const el = [...document.querySelectorAll(selector)];
+      if (el.length < 1) {
+        throw new Error(`please double check slector : ${selector}`);
+      }
+      return el;
+    }
+    const el = document.querySelector(selector);
+    if (el) return el;
+    throw new Error(`please double check slector : ${selector}`);
+    */
+  console.log(isList); //undefined
+  const el = isList
+    ? [...document.querySelectorAll(selector)]
+    : document.querySelector(selector);
+  //if not a List --> chech exist or not
+  if (!isList && el) return el;
+  //if is a List ---> chech empty or not
 
-const newLast = scores.at(-2);
-console.log(newLast);
+  if (isList && !el.length < 1) return el;
 
-const channel = "Coding Addict";
-console.log(channel.at(0));
+  throw new Error(`please double check slector : ${selector}`);
+};
+
+console.log(getElement(".heading")); //here second paramter is undefined
+console.log(getElement(".list-item", true));
