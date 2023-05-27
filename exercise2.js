@@ -96,40 +96,23 @@ let second = 'john';
 
 console.log(first, second)
 */
-//Get Element Helper :
-const heading = document.querySelector(".heading");
-console.log(heading);
+//"for in" Loop
+//for in loop iterate over object properties
+//not advised to use it on arrays, especially if the order is important
+//of array use "for of" loop instead
 
-const listItem = document.querySelectorAll(".list-item");
-console.log(listItem);
-
-//what happen if you type wrong class name in parenthesis
-
-const getElement = (selector, isList) => {
-  //when we don't pass second paramter to functoin this paramter is undefined as a default
-  /*if (isList) {
-      const el = [...document.querySelectorAll(selector)];
-      if (el.length < 1) {
-        throw new Error(`please double check slector : ${selector}`);
-      }
-      return el;
-    }
-    const el = document.querySelector(selector);
-    if (el) return el;
-    throw new Error(`please double check slector : ${selector}`);
-    */
-  console.log(isList); //undefined
-  const el = isList
-    ? [...document.querySelectorAll(selector)]
-    : document.querySelector(selector);
-  //if not a List --> chech exist or not
-  if (!isList && el) return el;
-  //if is a List ---> chech empty or not
-
-  if (isList && !el.length < 1) return el;
-
-  throw new Error(`please double check slector : ${selector}`);
+const person = {
+  name: "john",
+  age: 25,
+  status: "student",
 };
 
-console.log(getElement(".heading")); //here second paramter is undefined
-console.log(getElement(".list-item", true));
+//for access key of and object and index in array
+for (const propertyName in person) {
+  console.log(propertyName);
+  console.log(`${propertyName} : ${person[propertyName]}`);
+}
+
+const myArray = ["kiya", "mehdi", "mamad"];
+for (const arr in myArray) console.log(arr); //0 1 2
+for (const arr of myArray) console.log(arr);
