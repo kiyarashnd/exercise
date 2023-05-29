@@ -96,10 +96,11 @@ let second = 'john';
 
 console.log(first, second)
 */
-//"for in" Loop
-//for in loop iterate over object properties
-//not advised to use it on arrays, especially if the order is important
-//of array use "for of" loop instead
+//Object.keys(), Object.values(), Object.entries() :
+//Three methods to convert objects into arrays
+//Object.keys() - converts property names into array
+//Object.values() - converts property values into array
+//Object.entries() - converts both.
 
 const person = {
   name: "john",
@@ -107,12 +108,32 @@ const person = {
   status: "student",
 };
 
-//for access key of and object and index in array
-for (const propertyName in person) {
-  console.log(propertyName);
-  console.log(`${propertyName} : ${person[propertyName]}`);
-}
+const keys = Object.keys(person);
+console.log(keys); //['name', 'age', 'status']
 
-const myArray = ["kiya", "mehdi", "mamad"];
-for (const arr in myArray) console.log(arr); //0 1 2
-for (const arr of myArray) console.log(arr);
+const values = Object.values(person);
+console.log(values); //['john', 25, 'student']
+
+const result = Object.entries(person);
+console.log(result); //[Array(2), Array(2), Array(2)]
+
+//map method :
+const newResult = result.map((item) => {
+  //   console.log(item);
+  const [first, second] = item;
+  console.log(first, second);
+  //if we want access just keys :
+  return first;
+});
+
+console.log(newResult);
+
+//for of loop :
+// for (const item of result) {
+//   const [first, second] = item;
+//   console.log(first, second);
+// }
+
+for (const [first, second] of result) {
+  console.log(first, second);
+}
