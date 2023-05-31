@@ -96,44 +96,62 @@ let second = 'john';
 
 console.log(first, second)
 */
-//Object.keys(), Object.values(), Object.entries() :
-//Three methods to convert objects into arrays
-//Object.keys() - converts property names into array
-//Object.values() - converts property values into array
-//Object.entries() - converts both.
+//new Set() :
+//Set object - store a collection of unique values of any type :
+//new Set :
+const unique = new Set();
+console.log(unique); //empty object
+//add(value) :
+unique.add("first");
+unique.add("first");
+unique.add("first");
+unique.add(4);
+unique.add("first");
 
-const person = {
-  name: "john",
-  age: 25,
-  status: "student",
-};
+console.log(unique); //Set(2) {'first', 4}
 
-const keys = Object.keys(person);
-console.log(keys); //['name', 'age', 'status']
+//delete(value)
+const result = unique.delete("first"); //this delete all first
+console.log("result is : ", result); //true
+console.log(unique);
 
-const values = Object.values(person);
-console.log(values); //['john', 25, 'student']
+//clear(value)
+//The clear() method removes all elements from a Set object.
+// unique.clear();
+// console.log(unique);
 
-const result = Object.entries(person);
-console.log(result); //[Array(2), Array(2), Array(2)]
+//has(value)
+const isValue = unique.has(4);
+console.log(isValue); //true
 
-//map method :
-const newResult = result.map((item) => {
-  //   console.log(item);
-  const [first, second] = item;
-  console.log(first, second);
-  //if we want access just keys :
-  return first;
+//new Set() - accepts iterable objects
+
+const products = [
+  {
+    title: "high-back",
+    company: "nike",
+  },
+  {
+    title: "high-back",
+    company: "addidas",
+  },
+  {
+    title: "high-back",
+    company: "nike",
+  },
+  {
+    title: "high-back",
+    company: "BMW",
+  },
+];
+
+const companies = products.map((item) => {
+  return item.company;
 });
+console.log(companies);
 
-console.log(newResult);
+const uniqueCompanies = new Set(companies);
+console.log(uniqueCompanies); //this is an object
 
-//for of loop :
-// for (const item of result) {
-//   const [first, second] = item;
-//   console.log(first, second);
-// }
-
-for (const [first, second] of result) {
-  console.log(first, second);
-}
+const finalCompanies = [...uniqueCompanies, "all"];
+console.log(finalCompanies);
