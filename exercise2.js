@@ -96,42 +96,26 @@ let second = 'john';
 
 console.log(first, second)
 */
-//String includes() :
-//String includes() - checks if a string contains another string
-//this method uses to search filter in websites
-//this method is case-sensitive
+//Array includes() :
+//Array includes() - checks if the item is an array
+//useful in conditional statement
 
-const firstName = 'john';
-const result = firstName.includes('jo');
-console.log(result); //true
+const groceries = ['milk', 'bread', 'meat'];
 
-const result2 = firstName.includes('j');
-console.log(result2); //true
+let randomItem = 'lemon';
 
-const result3 = firstName.includes('j', 0);
-console.log(result3); //true
+let isIncluded = groceries.includes(randomItem);
+console.log(isIncluded); //false
 
-const result4 = firstName.includes('j', 2);
-console.log(result4); //false
+randomItem = 'milk';
+isIncluded = groceries.includes(randomItem);
+console.log(isIncluded); //true
 
-const myProducts = {
-  title: 'Leather Chair',
-};
+randomItem = 'milk';
+isIncluded = groceries.includes(randomItem, 1);
+console.log(isIncluded); //false
 
-const result5 = myProducts.title.includes('Le');
-console.log(result5); //true
-
-const products = [
-  { title: 'Modern Poster' },
-  { title: 'Bar stool' },
-  { title: 'Armchair' },
-  { title: 'Leather Chair' },
-];
-
-const text = 'cha';
-
-const filteredProducts = products.filter((product) =>
-  product.title.toLowerCase().includes(text)
-);
-
-console.log(filteredProducts);
+//use in conditional statement :
+if (groceries.includes(randomItem)) {
+  console.log(`yeah! it's on the list`);
+}
