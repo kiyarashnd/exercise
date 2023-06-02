@@ -96,62 +96,42 @@ let second = 'john';
 
 console.log(first, second)
 */
-//new Set() :
-//Set object - store a collection of unique values of any type :
-//new Set :
-const unique = new Set();
-console.log(unique); //empty object
-//add(value) :
-unique.add("first");
-unique.add("first");
-unique.add("first");
-unique.add(4);
-unique.add("first");
+//String includes() :
+//String includes() - checks if a string contains another string
+//this method uses to search filter in websites
+//this method is case-sensitive
 
-console.log(unique); //Set(2) {'first', 4}
+const firstName = 'john';
+const result = firstName.includes('jo');
+console.log(result); //true
 
-//delete(value)
-const result = unique.delete("first"); //this delete all first
-console.log("result is : ", result); //true
-console.log(unique);
+const result2 = firstName.includes('j');
+console.log(result2); //true
 
-//clear(value)
-//The clear() method removes all elements from a Set object.
-// unique.clear();
-// console.log(unique);
+const result3 = firstName.includes('j', 0);
+console.log(result3); //true
 
-//has(value)
-const isValue = unique.has(4);
-console.log(isValue); //true
+const result4 = firstName.includes('j', 2);
+console.log(result4); //false
 
-//new Set() - accepts iterable objects
+const myProducts = {
+  title: 'Leather Chair',
+};
+
+const result5 = myProducts.title.includes('Le');
+console.log(result5); //true
 
 const products = [
-  {
-    title: "high-back",
-    company: "nike",
-  },
-  {
-    title: "high-back",
-    company: "addidas",
-  },
-  {
-    title: "high-back",
-    company: "nike",
-  },
-  {
-    title: "high-back",
-    company: "BMW",
-  },
+  { title: 'Modern Poster' },
+  { title: 'Bar stool' },
+  { title: 'Armchair' },
+  { title: 'Leather Chair' },
 ];
 
-const companies = products.map((item) => {
-  return item.company;
-});
-console.log(companies);
+const text = 'cha';
 
-const uniqueCompanies = new Set(companies);
-console.log(uniqueCompanies); //this is an object
+const filteredProducts = products.filter((product) =>
+  product.title.toLowerCase().includes(text)
+);
 
-const finalCompanies = [...uniqueCompanies, "all"];
-console.log(finalCompanies);
+console.log(filteredProducts);
