@@ -96,26 +96,64 @@ let second = 'john';
 
 console.log(first, second)
 */
-//Array includes() :
-//Array includes() - checks if the item is an array
-//useful in conditional statement
+//FormData API :
+const form = document.querySelector('.form');
+//also valid approach
+//const formData=new formData(form);
 
-const groceries = ['milk', 'bread', 'meat'];
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const formData = new FormData(e.currentTarget);
+  console.log(formData);
+  //spread out - entries, values,keys
+  const entries = [...formData.entries()];
+  console.log('entries', entries);
+  const values = [...formData.values()];
+  console.log('values', values);
+  const keys = [...formData.keys()];
+  console.log('keys', keys);
 
-let randomItem = 'lemon';
+  //iterate over with "for of" loop :
+  for (let [name, value] of formData) {
+    console.log(`${name} = ${value}`);
+  }
 
-let isIncluded = groceries.includes(randomItem);
-console.log(isIncluded); //false
+  if (values.includes('')) {
+    alert('please enter all values');
+    return;
+  }
+  const formObject = Object.fromEntries(formData);
+  // do something
+  console.log(formObject);
 
-randomItem = 'milk';
-isIncluded = groceries.includes(randomItem);
-console.log(isIncluded); //true
+  e.currentTarget.reset();
+});
+/*
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const formData = new FormData(e.currentTarget);
+  //check for value (based on name of inputs is html code)
+  const name = formData.get('name');
+  console.log(name);
+  //apend
+  formData.append('test', 'testValue');
+  const entries = [...formData.entries()];
+  console.log(entries);
+});
+*/
+/*
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  console.log(e.currentTarget);
+  const formData = new FormData(e.currentTarget);
+  const entries = [...formData.entries()];
+  console.log(entries);
+  //it's not JSON so....(depends on the server)
+  //axios.post('someUrl',formData)
 
-randomItem = 'milk';
-isIncluded = groceries.includes(randomItem, 1);
-console.log(isIncluded); //false
-
-//use in conditional statement :
-if (groceries.includes(randomItem)) {
-  console.log(`yeah! it's on the list`);
-}
+  const formObject = Object.fromEntries(formData);
+  console.log(formObject);
+  //will work
+  //axios.post('someUrl',formObject)
+});
+*/

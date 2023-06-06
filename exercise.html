@@ -11,12 +11,40 @@
     <link rel="stylesheet" href="exercise2.css" />
   </head>
   <body>
-    <h1>Java Script</h1>
-    <div class="container">
-      <img src="image2.jpg" alt="Image 2" />
-      <img src="image3.jpg" alt="Image 3" />
-      <img src="image1.jpg" alt="Image 1" />
-    </div>
+    <form class="form">
+      <h4>formData API</h4>
+      <!-- name -->
+      <div class="form-row">
+        <label class="form-label" for="name">name</label>
+        <input
+          type="text"
+          name="name"
+          id="name"
+          class="form-input name-input"
+        />
+      </div>
+      <!-- email -->
+      <div class="form-row">
+        <label class="form-label" for="email">email</label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          class="form-input email-input"
+        />
+      </div>
+      <!-- password -->
+      <div class="form-row">
+        <label class="form-label" for="password">password</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          class="form-input password-input"
+        />
+      </div>
+      <button type="submit" class="btn btn-block">register</button>
+    </form>
 
     <!--<script src=" https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
