@@ -96,64 +96,26 @@ let second = 'john';
 
 console.log(first, second)
 */
-//FormData API :
-const form = document.querySelector('.form');
-//also valid approach
-//const formData=new formData(form);
+//Debounce :
+const btn = document.querySelector('.btn');
 
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const formData = new FormData(e.currentTarget);
-  console.log(formData);
-  //spread out - entries, values,keys
-  const entries = [...formData.entries()];
-  console.log('entries', entries);
-  const values = [...formData.values()];
-  console.log('values', values);
-  const keys = [...formData.keys()];
-  console.log('keys', keys);
+const debounce = (fn) => {
+  let timeoutID;
+  return () => {
+    console.log(timeoutID);
+    clearTimeout(timeoutID);
+    timeoutID = setTimeout(() => {
+      fn();
+    }, 2000);
+  };
+};
 
-  //iterate over with "for of" loop :
-  for (let [name, value] of formData) {
-    console.log(`${name} = ${value}`);
-  }
-
-  if (values.includes('')) {
-    alert('please enter all values');
-    return;
-  }
-  const formObject = Object.fromEntries(formData);
-  // do something
-  console.log(formObject);
-
-  e.currentTarget.reset();
-});
-/*
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const formData = new FormData(e.currentTarget);
-  //check for value (based on name of inputs is html code)
-  const name = formData.get('name');
-  console.log(name);
-  //apend
-  formData.append('test', 'testValue');
-  const entries = [...formData.entries()];
-  console.log(entries);
-});
-*/
-/*
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  console.log(e.currentTarget);
-  const formData = new FormData(e.currentTarget);
-  const entries = [...formData.entries()];
-  console.log(entries);
-  //it's not JSON so....(depends on the server)
-  //axios.post('someUrl',formData)
-
-  const formObject = Object.fromEntries(formData);
-  console.log(formObject);
-  //will work
-  //axios.post('someUrl',formObject)
-});
-*/
+btn.addEventListener(
+  'click',
+  debounce(() => {
+    console.log('you clicked me');
+  })
+);
+//delay logic
+//so it runs 2s after last click
+//setTimeout returns id,which pass into clearTimeout
