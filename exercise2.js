@@ -105,7 +105,7 @@ const debounce = (fn) => {
     console.log(timeoutID);
     clearTimeout(timeoutID);
     timeoutID = setTimeout(() => {
-      fn();
+      fn(); //here this fn() function run 2s after latest click on button
     }, 2000);
   };
 };
